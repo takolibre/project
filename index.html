@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Learning Vue.js Project</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue@2.2.6/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <p>{{msg}}
+      <!--  NOT ALLOWED   <a href="{{url}}">Google.com</a> -->
+      <a v-bind:href="url + '?test=1'">Google.com</a>
+    </p>
+    <form>
+      Name: <input type="text" :value="name"><br> Vue Model without modifier. Email: <input type="email" v-model="email"><br> Vue Model with lazy modifier. Email: <input type="email" v-model.lazy="email"><br>
+      <a :href="'mailto:' + email">{{email}}</a>
+      <input type="checkbox" v-model="selectedInterests" value="Running">
+      <input type="checkbox" v-model="selectedInterests" value="Biking">
+      <input type="checkbox" v-model="selectedInterests" value="Swimming">
+      <p>You selected: {{selectedInterests.join(', ')}}</p>
+    </form>
+    <h3>One way binding</h3>
+    <p>Code updates UI <code>{{}}</code> and <code>v-bind:</code></p>
+    <p>Shortcut for <code>v-bind:</code> is <code>:</code> eg. <code>v-bind:href</code> or <code>:href</code></p>
+    <h3>Two way binding</h3>
+    <p>Code updates UI and UI updates the code. <code>v-model</code></p>
+    <p>Other Vue Model modifiers are <code>trim</code> and <code>number</code>, etc.</p>
+    <h3>Binding to Style Attribute</h3>
+    <p>Use <code>:style</code> attribute with an object literal containing CSS property value pairs. CSS can be written camel case or just use quotes around both property name and value. Can also bind the style attribute to object literals in data</p>
+    <p>Ex. <code>:style="{'border':'1px solid red','padding': padding}"</code></p>
+    <div :style="{'border':'1px solid red','padding': padding}">Ex. JS object literal bound to the style attribute</div>
+    <p>Ex. <code>:style="fancyDiv"</code> or for multiple objects <code>:style="[fancyDiv,fancierDiv]"</code></p>
+    <div :style="fancyDiv">Ex. JS object literal in data bound to the style attribute</div>
+
+  </div>
+
+<script>
+// vm -> View Model
+var vm = new Vue({
+  el: '#app',
+  data: {
+    msg: 'this is string interpolation',
+    url: 'https://google.com',
+    name: 'Bart',
+    email: '',
+    //specify a default selected value with selectedInterests: ['Biking']
+    selectedInterests: [],
+    padding: '30px',
+    fancyDiv: {
+      'padding':'30px',
+      'border':'1px solid',
+      'border-radius':'5px',
+      'background-color':'#f3f3f3'
+    },
+    fancierDiv: {
+'padding':'30px',
+      'border':'1px solid',
+      'border-radius':'5px',
+      'background-color':'#f3f3f3'
+    }
+  }
+});
+
+</script>
+
+</body>
+</html>
