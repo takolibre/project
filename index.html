@@ -9,7 +9,9 @@
 <body>
   <div id="app">
     <p>{{msg}}
+
       <!--  NOT ALLOWED   <a href="{{url}}">Google.com</a> -->
+
       <a v-bind:href="url + '?test=1'">Google.com</a>
     </p>
     <form>
